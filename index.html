@@ -1,0 +1,30 @@
+<button onclick="buscarUsuarios()">
+    Buscar usuários
+</button>
+
+<div id="resultado"></div>
+
+<script>
+async function buscarUsuarios() {
+
+    const resposta = await fetch(
+        "https://jsonplaceholder.typicode.com/users"
+    );
+
+    const usuarios = await resposta.json();
+
+    let html = "";
+
+    usuarios.forEach(usuario => {
+        html += `
+            <p>
+                ${usuario.name}
+            </p>
+        `;    
+    });
+
+    document.getElementById(
+        "resultado"
+    ).innerHTML = html;
+}
+</script>
